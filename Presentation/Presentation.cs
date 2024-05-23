@@ -1,4 +1,3 @@
-namespace Presentation;
 
 public class Menus
 {
@@ -176,11 +175,12 @@ public class Menus
             Console.WriteLine($"[{gymnastIndex}] {gymnast.fname} {gymnast.lname}"); // right now just printing the index and the first and last name. You can add more.
         }
 
-        int gymnastSelection = int.Parse(Console.ReadLine()) - 1;
+        int gymnastSelection = int.Parse(Console.ReadLine()) - 1;//this takes the selection, but decreases the number by 1.
 
-        repo.UpdateCompetition(competitions[compSelection], gymnasts[gymnastSelection]);
+        repo.UpdateCompetition(competitions[compSelection], gymnasts[gymnastSelection]); 
 
         Console.WriteLine($"{gymnasts[gymnastSelection].fname} {gymnasts[gymnastSelection].lname} was added to Competiion {competitions[compSelection].competitionName}");
+
 
     }
 
