@@ -15,7 +15,7 @@
             this._connectionString = File.ReadAllText(path);
         }
 
-        public void StoreUser(Gymnast gymnast)
+        public void StoreUser(Gymnast gymnast)  // this saves a gymnast to SQL
         {
             //This using statement allows for this reference to be disposed of, and the connection closed after the 
             //method finishes running
@@ -47,7 +47,7 @@
             //because we created it with that using statement above. 
             connection.Close();
         }
-        public Gymnast GetGymnast(string userName)
+        public Gymnast GetGymnast(string userName) // this retrieves a gymnast from SQL
         {
             Gymnast gymnast = new Gymnast();
 
@@ -77,7 +77,7 @@
             return gymnast;
         }
 
-        public void UpdateCompetition(Competition competition, Gymnast gymnast)
+        public void UpdateCompetition(Competition competition, Gymnast gymnast)   // this updates a competition by adding a gymnast to the linking table by adding a row with competionId and UserID
         {
             using SqlConnection connection = new SqlConnection(this._connectionString);
             connection.Open();
@@ -95,7 +95,7 @@
             cmd.ExecuteNonQuery();
             connection.Close();
         }
-        public void CreateCompetition(Competition competition)
+        public void CreateCompetition(Competition competition) // this creates competition and stores it in SQL (better name would have been store competition)
         {
             using SqlConnection connection = new SqlConnection(this._connectionString);
             //Once we create our SqlConnection object, we call a method off of it to open the connection to the database.
@@ -126,7 +126,7 @@
             connection.Close();
         }
 
-        public List<Competition> GetAllCompetitions()
+        public List<Competition> GetAllCompetitions()  // this retrieves all competitions and returns them as a List of Competitions so they can be printed
         {
             // a SQLConnection object is created to connect to the database, and is provided the connection string
             using SqlConnection connection = new SqlConnection(this._connectionString);
@@ -158,7 +158,7 @@
             return competitions;
         }
 
-        public List<Gymnast> GetAllGymnasts()
+        public List<Gymnast> GetAllGymnasts() // this retrieves a list of all gymnasts and returns them as List<Gymnast> (List of gymnasts), so they can be printed out
         {
             // a SQLConnection object is created to connect to the database, and is provided the connection string
             using SqlConnection connection = new SqlConnection(this._connectionString);
@@ -190,7 +190,7 @@
             return gymnasts;
         }
 
-        public List<Competition> GetCompetitions(Gymnast gymnast)
+        public List<Competition> GetCompetitions(Gymnast gymnast) // this looks similar to the one above because of naming, but This is specifically getting the list of competitions which a gymnast is signed up for
         {
             // a SQLConnection object is created to connect to the database, and is provided the connection string
             using SqlConnection connection = new SqlConnection(this._connectionString);
@@ -226,7 +226,7 @@
             return competitions;
         }
 
-        public List<Competition> GetEligibleCompetitions(Gymnast gymnast)
+        public List<Competition> GetEligibleCompetitions(Gymnast gymnast)  // this does the exact opposite of above, it gets only competitions which a particular Gymnast is NOT enrolled in. So when a gymnast is trying to enroll it will only show ones they are not already enrolled in
         {
             // a SQLConnection object is created to connect to the database, and is provided the connection string
             using SqlConnection connection = new SqlConnection(this._connectionString);

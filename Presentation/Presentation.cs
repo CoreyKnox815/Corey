@@ -1,10 +1,10 @@
-
+namespace Presentation;
 
 public class Menus
 {
     static SqlRepository repo = new();
 
-    public static void MainMenu()
+    public static void MainMenu() // main menu
     {
 
         bool isValid = false;
@@ -51,7 +51,7 @@ public class Menus
         }
         while (!isValid);
     }
-    public static Gymnast CreateUser()
+    public static Gymnast CreateUser()  // creates a new gymnast
     {
         string userName;
         string fname;
@@ -72,7 +72,7 @@ public class Menus
         return gymnast;
 
     }
-    public static Gymnast UserLogin()
+    public static Gymnast UserLogin() // logs in a gymnast
     {
         string userName;
         Console.WriteLine("Please enter a username");
@@ -84,7 +84,7 @@ public class Menus
         return gymnast;
 
     }
-    public static void AdminLogin()
+    public static void AdminLogin()  // login for Admin
     {
         string pw;
         bool pwValid = false;
@@ -105,7 +105,7 @@ public class Menus
         while (!pwValid);
 
     }
-    public static void AdminMenu()
+    public static void AdminMenu()  // admin options
     {
         int selection;
         Console.WriteLine("Please select what you would like to do: ");
@@ -131,7 +131,7 @@ public class Menus
         }
     }
 
-    public static void CreateCompetionMenu()
+    public static void CreateCompetionMenu() // FRom the Admin menu, can create a new competition
     {
         string competitionName;
         DateTime competitionStartDate;
@@ -153,7 +153,7 @@ public class Menus
         Console.WriteLine($"Competition ID: {createdCompetition.competionId} was saved!");
     }
 
-    public static void AddGymnastToCompetition()
+    public static void AddGymnastToCompetition() // From the Admin menu, can add gymnast to a competition
     {
         int compIndex = 0;
         int gymnastIndex = 0;
@@ -184,7 +184,7 @@ public class Menus
 
     }
 
-    public static void GymnastOptionsMenu(Gymnast gymnast)
+    public static void GymnastOptionsMenu(Gymnast gymnast) // the options that are displayed to the gymnast when they log in
     {
         bool validSelection = false;
         bool stayActive = true;
@@ -227,12 +227,12 @@ public class Menus
         while (!validSelection && stayActive);
     }
 
-    public static void ViewGymnastCompetitions(Gymnast gymnast)
+    public static void ViewGymnastCompetitions(Gymnast gymnast) // view the competitions which the gymnast is enrolled in
     {
         List<Competition> userCompetitions = new();
         userCompetitions = repo.GetCompetitions(gymnast);
 
-        foreach(Competition competion in userCompetitions)
+        foreach (Competition competion in userCompetitions)
         {
             Console.WriteLine(competion.ToString());
         }
@@ -240,12 +240,12 @@ public class Menus
 
     }
 
-    public static void SignUpForCompetition(Gymnast gymnast)
+    public static void SignUpForCompetition(Gymnast gymnast) // sign up for a new competition 
     {
         int compIndex = 0;
 
         Console.WriteLine("Please select which competition you'd like to sign up for:");
-        List<Competition> competitions = repo.GetEligibleCompetitions(gymnast);
+        List<Competition> competitions = repo.GetEligibleCompetitions(gymnast);  // this will only display competitions the gymnast is NOT already enrolled in
         foreach (Competition competition in competitions)
         {
             compIndex++; // add 1 to the index, so it starts with 1(instead of 0 as defined above). Eeach time the loop goes through it will increment
@@ -255,6 +255,8 @@ public class Menus
         repo.UpdateCompetition(competitions[compSelection], gymnast);
     }
 
-    
+
+
+
 
 }
