@@ -1,0 +1,1 @@
+Data Source=GEIPW0785K6;Initial Catalog=BootcampDB1;Integrated Security=False;User Id=sa;Password=GMH393h!;MultipleActiveResultSets=True;TrustServerCertificate=True;
